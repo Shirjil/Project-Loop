@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "https://project-loop-backend-1.onrender.com" ,
+    baseURL: "https://project-loop-backend-1.onrender.com/api",
 });
 
 export const submitFeedback = (feedback) =>
@@ -9,7 +9,9 @@ export const submitFeedback = (feedback) =>
 
 export const getAllFeedback = () =>
     API.get("/feedback");
+
 export const deleteFeedback = (id) =>
     API.delete(`/feedback/${id}`);
+
 export const updateFeedback = (id, feedback) =>
     API.put(`/feedback/${id}`, feedback);
