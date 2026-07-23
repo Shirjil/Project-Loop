@@ -1,0 +1,59 @@
+/* Navbar */
+
+.navbar {
+  backdrop-filter: blur(10px);
+}
+
+.navbar .nav-link {
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+  color: #ffd43b !important;
+  transform: translateY(-2px);
+}
+
+.navbar-brand {
+  transition: .3s;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+/* Cards */
+
+.card {
+  border: none;
+  border-radius: 18px;
+  transition: all .3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.95);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.15);
+}
+
+/* Buttons */
+
+.btn {
+  border-radius: 10px;
+  transition: .3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Form */
+
+.form-control {
+  border-radius: 10px;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 10px rgba(13,110,253,.25);
+}
