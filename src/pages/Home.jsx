@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import FeedbackForm from "./FeedbackForm";
 import ViewFeedback from "./ViewFeedback";
-import PieChart from "./PieChart";
+import PieChart from "./PieChart.jsx";
 
 import { getAllFeedback } from "../services/api";
 
