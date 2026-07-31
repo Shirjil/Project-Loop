@@ -8,8 +8,87 @@ import {
     FaShieldAlt,
 } from "react-icons/fa";
 
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { loginUser } from "../services/AuthService";
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
+
+    const [email, setEmail] = useState("");
+
+    const [password, setPassword] = useState("");
+
+    const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
+    const handleLogin = async (e) => {
+
+        e.preventDefault();
+
+        try {
+
+            setLoading(true);
+
+            const response = await loginUser({
+
+                email,
+
+                password
+
+            });
+
+            localStorage.setItem(
+                "token",
+                response.data.token
+            );
+
+            localStorage.setItem(
+                "role",
+                response.data.role
+            );
+
+            localStorage.setItem(
+                "fullName",
+                response.data.fullName
+            );
+
+            await Swal.fire({
+
+                icon: "success",
+
+                title: "Login Successful",
+
+                text: `Welcome ${response.data.fullName}`,
+
+                timer: 1500,
+
+                showConfirmButton: false
+
+            });
+
+            navigate("/home");
+
+        } catch (error) {
+
+            Swal.fire({
+
+                icon: "error",
+
+                title: "Login Failed",
+
+                text:
+                    error.response?.data?.message ||
+                    "Invalid Email or Password"
+
+            });
+
+        } finally {
+
+            setLoading(false);
+
+        }
+
+    };
 
     return (
         <div className="login-page">
@@ -120,7 +199,7 @@ const Login = () => {
 
                 {/* Login Form */}
 
-                <form>
+                    <form onSubmit={handleLogin}>
 
                     {/* Username */}
 
@@ -129,8 +208,11 @@ const Login = () => {
                         <FaUser className="icon"/>
 
                         <input
-                            type="text"
-                            placeholder="Username or Email"
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
 
                     </div>
@@ -144,6 +226,9 @@ const Login = () => {
                         <input
                             type={showPassword ? "text" : "password"}
                             placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
 
                         <span
@@ -173,11 +258,13 @@ const Login = () => {
 
                     </div>
 
-                    <button className="login-btn">
-
-                        LOGIN
-
-                    </button>
+                        <button
+                            type="submit"
+                            className="login-btn"
+                            disabled={loading}
+                        >
+                            {loading ? "Logging In..." : "LOGIN"}
+                        </button>
 
                 </form>
 
