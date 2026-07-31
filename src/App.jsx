@@ -1,18 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
+import Login from "./components/Login.jsx";
 
 function App() {
-
-    return (
-        <>
-            <Navbar />
-            <Home />
-        </>
-    );
-
+    return <Login />;
 }
 
 export default App;
